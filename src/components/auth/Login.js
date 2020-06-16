@@ -1,10 +1,16 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import AuthContext from '../../context/auth/authContext'
 
 const Login = props => {
   const authContext = useContext(AuthContext)
 
-  const { login } = authContext
+  const { login, isAthenticated } = authContext
+
+  useEffect(() => {
+    if (isAthenticated) {
+      props.history.push('/')
+    }
+  }, [isAthenticated, props.history])
 
   const [user, setUser] = useState({
     username: '',
@@ -27,34 +33,43 @@ const Login = props => {
   }
 
   return (
-    <div className='container'>
-      <h1>Login</h1>
+    <div className='row'>
+      <h1 className='col s6 offset-s5'>Login</h1>
 
-      <form onSubmit={onSubmit}>
-        <div className='form-group'>
-          <label htmlFor='username'>Username</label>
-          <input
-            type='text'
-            name='username'
-            value={username}
-            onChange={onChange}
-            required
-          />
+      <form className='col s6 offset-s5' onSubmit={onSubmit}>
+        <div className='row'>
+          <div className='input-field col s6'>
+            <input
+              placeholder='Username'
+              id='username'
+              type='text'
+              name='username'
+              value={username}
+              onChange={onChange}
+              className='validate'
+              required
+            />
+          </div>
         </div>
-        <div className='form-group'>
-          <label htmlFor='password'>Password</label>
-          <input
-            type='password'
-            name='password'
-            value={password}
-            onChange={onChange}
-            required
-          />
+        <div className='row'>
+          <div className='input-field col s6'>
+            <input
+              placeholder='Password'
+              id='password'
+              type='password'
+              name='password'
+              value={password}
+              onChange={onChange}
+              className='validate'
+              required
+            />
+          </div>
         </div>
+
         <input
           type='submit'
           value='Login'
-          className='btn btn-primary btn-block'
+          className='waves-effect waves-light btn'
         />
       </form>
     </div>

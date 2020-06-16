@@ -3,17 +3,29 @@ import axios from 'axios'
 import setAuthToken from '../../utils/setAuthToken'
 import AuthReducer from './authReducer'
 import AuthContext from './authContext'
-import { LOGIN_SUCCESS } from '../types'
+import { LOGIN_SUCCESS, LOGOUT, USER_LOGGED, AUTH_ERROR } from '../types'
 
 const AuthState = props => {
   const initialState = {
     token: localStorage.getItem('token'),
-    isAthenticated: null,
+    isAuthenticated: null,
     loading: true,
     user: null,
   }
 
   const [state, dispatch] = useReducer(AuthReducer, initialState)
+
+  const loadUser = () => {
+    if (localStorage.token) {
+      setAuthToken(localStorage.token)
+
+      dispatch({
+        type: USER_LOGGED,
+      })
+    } else {
+      dispatch({ type: AUTH_ERROR })
+    }
+  }
 
   const login = async formData => {
     const config = {
@@ -30,19 +42,24 @@ const AuthState = props => {
         payload: res.data,
       })
 
-      if (localStorage.token) setAuthToken(localStorage.token)
+      loadUser()
     } catch (err) {
       console.log(err)
     }
   }
+
+  const logout = () => dispatch({ type: LOGOUT })
+
   return (
     <AuthContext.Provider
       value={{
         token: state.token,
-        isAthenticated: state.isAthenticated,
+        isAuthenticated: state.isAuthenticated,
         loading: state.loading,
         user: state.user,
         login,
+        logout,
+        loadUser,
       }}
     >
       {props.children}
