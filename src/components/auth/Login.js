@@ -4,13 +4,13 @@ import AuthContext from '../../context/auth/authContext'
 const Login = props => {
   const authContext = useContext(AuthContext)
 
-  const { login, isAthenticated } = authContext
+  const { login, isAuthenticated } = authContext
 
   useEffect(() => {
-    if (isAthenticated) {
+    if (isAuthenticated) {
       props.history.push('/')
     }
-  }, [isAthenticated, props.history])
+  }, [isAuthenticated, props.history])
 
   const [user, setUser] = useState({
     username: '',

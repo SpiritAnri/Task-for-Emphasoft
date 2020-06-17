@@ -1,0 +1,32 @@
+export default [
+  {
+    id: 0,
+    username: 'string0',
+    first_name: 'string0',
+    last_name: 'string0',
+    password: 'string',
+    is_active: true,
+    last_login: '2020-06-17T07:33:15.909Z',
+    is_superuser: true,
+  },
+  {
+    id: 2,
+    username: 'string2',
+    first_name: 'string2',
+    last_name: 'string2',
+    password: 'string',
+    is_active: true,
+    last_login: '2020-06-17T07:33:15.909Z',
+    is_superuser: true,
+  },
+  {
+    id: 1,
+    username: 'string1',
+    first_name: 'string1',
+    last_name: 'string1',
+    password: 'string',
+    is_active: true,
+    last_login: '2020-06-17T07:33:15.909Z',
+    is_superuser: true,
+  },
+]

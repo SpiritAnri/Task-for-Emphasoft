@@ -4,13 +4,11 @@ import AuthContext from '../../context/auth/authContext'
 const Navbar = () => {
   const authContext = useContext(AuthContext)
 
-  const { logout, isAthenticated } = authContext
+  const { logout, isAuthenticated } = authContext
 
   const onLogout = () => {
     logout()
   }
-
-  console.log(isAthenticated)
 
   const authLinks = (
     <Fragment>
@@ -28,7 +26,7 @@ const Navbar = () => {
           Logo
         </a>
         <ul id='nav-mobile' className='right hide-on-med-and-down'>
-          {isAthenticated ? authLinks : <p>No login</p>}
+          {isAuthenticated ? authLinks : <p>No login</p>}
         </ul>
       </div>
     </nav>
