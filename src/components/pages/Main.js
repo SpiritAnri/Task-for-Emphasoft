@@ -2,6 +2,7 @@ import React, { useEffect, useContext } from 'react'
 import AuthContext from '../../context/auth/authContext'
 
 import Users from '../users/Users'
+import UserFilter from '../users/UserFilter'
 
 const Main = () => {
   const authContext = useContext(AuthContext)
@@ -13,7 +14,7 @@ const Main = () => {
 
   return (
     <div>
-      <h1>Main components</h1>
+      <UserFilter />
       <Users />
     </div>
   )

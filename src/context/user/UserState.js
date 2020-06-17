@@ -11,7 +11,7 @@ const UserState = props => {
   const initialState = {
     users: testData,
     filtered: null,
-    orderType: 'asc',
+    orderType: null,
     loading: true,
   }
 

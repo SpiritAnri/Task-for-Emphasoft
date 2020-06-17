@@ -4,7 +4,7 @@ import UserContext from '../../context/user/userContext'
 const Users = () => {
   const userContext = useContext(UserContext)
 
-  const { getUsers, users, sortUsersById, orderType } = userContext
+  const { getUsers, users, sortUsersById, orderType, filtered } = userContext
 
   useEffect(() => {
     getUsers()
@@ -13,7 +13,11 @@ const Users = () => {
   }, [])
 
   const iconType =
-    orderType === 'asc' ? 'keyboard_arrow_up' : 'keyboard_arrow_down'
+    orderType !== null
+      ? orderType === 'asc'
+        ? 'keyboard_arrow_up'
+        : 'keyboard_arrow_down'
+      : 'remove'
 
   return (
     <table className='highlight responsive-table'>
@@ -29,14 +33,23 @@ const Users = () => {
         </tr>
       </thead>
       <tbody>
-        {users.map(item => (
-          <tr key={item.id}>
-            <td>{item.id}</td>
-            <td>{item.username}</td>
-            <td>{item.first_name}</td>
-            <td>{item.last_name}</td>
-          </tr>
-        ))}
+        {filtered === null
+          ? users.map(item => (
+              <tr key={item.id}>
+                <td>{item.id}</td>
+                <td>{item.username}</td>
+                <td>{item.first_name}</td>
+                <td>{item.last_name}</td>
+              </tr>
+            ))
+          : filtered.map(item => (
+              <tr key={item.id}>
+                <td>{item.id}</td>
+                <td>{item.username}</td>
+                <td>{item.first_name}</td>
+                <td>{item.last_name}</td>
+              </tr>
+            ))}
       </tbody>
     </table>
   )
