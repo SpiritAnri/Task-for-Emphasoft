@@ -53,7 +53,7 @@ export default [
     id: 5,
     username: 'bob',
     first_name: 'string1',
-    last_name: 'string1',
+    last_name: 'string1s',
     password: 'string',
     is_active: true,
     last_login: '2020-06-17T07:33:15.909Z',
