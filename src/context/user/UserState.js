@@ -25,7 +25,9 @@ const UserState = props => {
 
   const getUsers = async () => {
     try {
-      const res = await axios.get('/api/v1/users/')
+      const res = await axios.get(
+        'http://emphasoft-test-assignment.herokuapp.com/api/v1/users/'
+      )
 
       dispatch({
         type: GET_USERS,

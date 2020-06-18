@@ -34,7 +34,11 @@ const AuthState = props => {
       },
     }
     try {
-      const res = await axios.post('/api-token-auth/', formData, config)
+      const res = await axios.post(
+        'http://emphasoft-test-assignment.herokuapp.com/api-token-auth/',
+        formData,
+        config
+      )
 
       console.log(res.data)
       dispatch({
