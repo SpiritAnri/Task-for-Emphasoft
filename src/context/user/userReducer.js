@@ -1,4 +1,10 @@
-import { GET_USERS, FILTER_USERS, CLEAR_FILTER, SORT_USERS } from '../types'
+import {
+  GET_USERS,
+  FILTER_USERS,
+  CLEAR_FILTER,
+  SORT_USERS,
+  USER_ERROR,
+} from '../types'
 
 export default (state, action) => {
   switch (action.type) {
@@ -26,6 +32,11 @@ export default (state, action) => {
         ...state,
         users: action.payload,
         orderType: state.orderType === 'asc' ? 'desc' : 'asc',
+      }
+    case USER_ERROR:
+      return {
+        ...state,
+        loading: false,
       }
     default:
       return state

@@ -1,10 +1,17 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect, useContext, Fragment } from 'react'
 import UserContext from '../../context/user/userContext'
 
 const Users = () => {
   const userContext = useContext(UserContext)
 
-  const { getUsers, users, sortUsersById, orderType, filtered } = userContext
+  const {
+    getUsers,
+    users,
+    sortUsersById,
+    orderType,
+    filtered,
+    loading,
+  } = userContext
 
   useEffect(() => {
     getUsers()
@@ -20,38 +27,46 @@ const Users = () => {
       : 'remove'
 
   return (
-    <table className='highlight responsive-table'>
-      <thead>
-        <tr>
-          <th onClick={sortUsersById}>
-            Id
-            <i className='material-icons'>{iconType}</i>
-          </th>
-          <th>Username</th>
-          <th>First name</th>
-          <th>Last name</th>
-        </tr>
-      </thead>
-      <tbody>
-        {filtered === null
-          ? users.map(item => (
-              <tr key={item.id}>
-                <td>{item.id}</td>
-                <td>{item.username}</td>
-                <td>{item.first_name}</td>
-                <td>{item.last_name}</td>
-              </tr>
-            ))
-          : filtered.map(item => (
-              <tr key={item.id}>
-                <td>{item.id}</td>
-                <td>{item.username}</td>
-                <td>{item.first_name}</td>
-                <td>{item.last_name}</td>
-              </tr>
-            ))}
-      </tbody>
-    </table>
+    <Fragment>
+      {users !== null && !loading ? (
+        <table className='highlight responsive-table'>
+          <thead>
+            <tr>
+              <th onClick={sortUsersById}>
+                Id
+                <i className='material-icons'>{iconType}</i>
+              </th>
+              <th>Username</th>
+              <th>First name</th>
+              <th>Last name</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filtered === null
+              ? users.map(item => (
+                  <tr key={item.id}>
+                    <td>{item.id}</td>
+                    <td>{item.username}</td>
+                    <td>{item.first_name}</td>
+                    <td>{item.last_name}</td>
+                  </tr>
+                ))
+              : filtered.map(item => (
+                  <tr key={item.id}>
+                    <td>{item.id}</td>
+                    <td>{item.username}</td>
+                    <td>{item.first_name}</td>
+                    <td>{item.last_name}</td>
+                  </tr>
+                ))}
+          </tbody>
+        </table>
+      ) : (
+        <div className='progress blue-grey darken-3'>
+          <div className='indeterminate blue-grey lighten-5'></div>
+        </div>
+      )}
+    </Fragment>
   )
 }
 

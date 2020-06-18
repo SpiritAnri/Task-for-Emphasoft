@@ -4,6 +4,7 @@ import './App.css'
 
 import Main from './components/pages/Main'
 import Login from './components/auth/Login'
+import Register from './components/auth/Register'
 import PrivateRoute from './components/routing/PrivateRoute'
 
 import UserState from './context/user/UserState'
@@ -20,6 +21,7 @@ const App = () => {
             <Switch>
               <PrivateRoute exact path='/' component={Main} />
               <Route exact path='/login' component={Login} />
+              <Route exact path='/register' component={Register} />
             </Switch>
           </div>
         </Router>

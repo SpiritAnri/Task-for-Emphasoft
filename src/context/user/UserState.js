@@ -3,7 +3,13 @@ import axios from 'axios'
 import _ from 'lodash'
 import UserReducer from './userReducer'
 import UserContext from './userContext'
-import { GET_USERS, FILTER_USERS, CLEAR_FILTER, SORT_USERS } from '../types'
+import {
+  GET_USERS,
+  FILTER_USERS,
+  CLEAR_FILTER,
+  SORT_USERS,
+  USER_ERROR,
+} from '../types'
 
 import testData from '../../utils/testData'
 
@@ -26,7 +32,10 @@ const UserState = props => {
         payload: res.data,
       })
     } catch (err) {
-      console.log(err)
+      dispatch({
+        type: USER_ERROR,
+        payload: err.response.msg,
+      })
     }
   }
 
@@ -41,7 +50,9 @@ const UserState = props => {
   const sortUsersById = () => {
     const clonedUsers = state.users.concat()
 
-    const sortUsers = _.orderBy(clonedUsers, 'id', state.orderType)
+    const newTypeOrder = state.orderType === 'asc' ? 'desc' : 'asc'
+
+    const sortUsers = _.orderBy(clonedUsers, 'id', newTypeOrder)
 
     dispatch({
       type: SORT_USERS,
