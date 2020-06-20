@@ -35,7 +35,7 @@ const AuthState = props => {
     }
     try {
       const res = await axios.post(
-        'http://emphasoft-test-assignment.herokuapp.com/api-token-auth/',
+        'https://emphasoft-test-assignment.herokuapp.com/api-token-auth/',
         formData,
         config
       )
