@@ -6,10 +6,15 @@ import Main from './components/pages/Main'
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
 import PrivateRoute from './components/routing/PrivateRoute'
+import setAuthToken from './utils/setAuthToken'
 
 import UserState from './context/user/UserState'
 import AuthState from './context/auth/AuthState'
 import Navbar from './components/layout/Navbar'
+
+if (localStorage.token) {
+  setAuthToken(localStorage.token)
+}
 
 const App = () => {
   return (

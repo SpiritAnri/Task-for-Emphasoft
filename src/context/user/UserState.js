@@ -11,11 +11,9 @@ import {
   USER_ERROR,
 } from '../types'
 
-import testData from '../../utils/testData'
-
 const UserState = props => {
   const initialState = {
-    users: testData,
+    users: null,
     filtered: null,
     orderType: null,
     loading: true,

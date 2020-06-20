@@ -40,7 +40,6 @@ const AuthState = props => {
         config
       )
 
-      console.log(res.data)
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data,
