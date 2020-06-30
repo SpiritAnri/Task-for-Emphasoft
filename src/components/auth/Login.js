@@ -1,6 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react'
 import AuthContext from '../../context/auth/authContext'
 
+import M from 'materialize-css/dist/js/materialize.min.js'
+
 const Login = props => {
   const authContext = useContext(AuthContext)
 
@@ -25,11 +27,14 @@ const Login = props => {
 
   const onSubmit = event => {
     event.preventDefault()
-
-    login({
-      username,
-      password,
-    })
+    if (username === '' || password === '') {
+      M.toast({ html: 'Please enter a username and password' })
+    } else {
+      login({
+        username,
+        password,
+      })
+    }
   }
 
   return (
@@ -47,7 +52,6 @@ const Login = props => {
               value={username}
               onChange={onChange}
               className='validate'
-              required
             />
           </div>
         </div>
@@ -61,7 +65,6 @@ const Login = props => {
               value={password}
               onChange={onChange}
               className='validate'
-              required
             />
           </div>
         </div>

@@ -5,6 +5,8 @@ import AuthReducer from './authReducer'
 import AuthContext from './authContext'
 import { LOGIN_SUCCESS, LOGOUT, USER_LOGGED, AUTH_ERROR } from '../types'
 
+import M from 'materialize-css/dist/js/materialize.min.js'
+
 const AuthState = props => {
   const initialState = {
     token: localStorage.getItem('token'),
@@ -44,9 +46,10 @@ const AuthState = props => {
         type: LOGIN_SUCCESS,
         payload: res.data,
       })
-
+      M.toast({ html: 'Login Success' })
       loadUser()
     } catch (err) {
+      M.toast({ html: 'Login Fail' })
       console.log(err)
     }
   }
