@@ -19,12 +19,11 @@ const Users = () => {
     //eslint-disable-next-line
   }, [])
 
-  const iconType =
-    orderType !== null
-      ? orderType === 'asc'
-        ? 'keyboard_arrow_up'
-        : 'keyboard_arrow_down'
-      : 'remove'
+  const iconType = orderType !== null ? 'sort' : 'menu'
+  const iconStyle =
+    orderType === 'asc'
+      ? { transform: 'scale(1, -1)', verticalAlign: 'middle' }
+      : { verticalAlign: 'middle' }
 
   return (
     <Fragment>
@@ -33,8 +32,12 @@ const Users = () => {
           <thead>
             <tr>
               <th onClick={sortUsersById}>
-                Id
-                <i className='material-icons'>{iconType}</i>
+                <div style={{ width: '5rem' }}>
+                  <span style={{ marginRight: '1rem' }}>id</span>
+                  <i className='material-icons' style={iconStyle}>
+                    {iconType}
+                  </i>
+                </div>
               </th>
               <th>Username</th>
               <th>First name</th>
